@@ -36,7 +36,7 @@ class LianjiaSpider(CrawlSpider):
         dealDate=response.xpath('//div[@class="dealDate"]/text()').getall()
         totalPrice=response.xpath('//div[@class="totalPrice"]/span/text()').getall()
         unitPrice=response.xpath('//div[@class="unitPrice"]/span/text()').getall()
-
+        dealCycle=response.xpath("//span[@class='dealCycleTxt']/span[2]/text()").getall()
 
         for i in range(0,len(dealDate)):
             if len(temp[i].split())==3:
@@ -45,8 +45,8 @@ class LianjiaSpider(CrawlSpider):
                 area=temp[i].split()[2]
             else:
                 title=temp[i].split()[0]+' '+temp[i].split()[1]
-                room=temp[i].split()[1]
-                area=temp[i].split()[2]
+                room=temp[i].split()[2]
+                area=temp[i].split()[3]
 
-            item = SpiderLianjiaItem(title=title,room=room,area=area,dealDate=dealDate[i],totalPrice=totalPrice[i],unitPrice=unitPrice[i])
+            item = SpiderLianjiaItem(title=title,room=room,area=area,dealDate=dealDate[i],totalPrice=totalPrice[i],unitPrice=unitPrice[i],dealCycle=dealCycle[i])
             yield item

@@ -15,3 +15,4 @@ class SpiderLianjiaItem(scrapy.Item):
     unitPrice=scrapy.Field()
     room=scrapy.Field()
     area=scrapy.Field()
+    dealCycle=scrapy.Field()

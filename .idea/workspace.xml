@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="" />
+    <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="">
+      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -28,7 +35,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622677979714</updated>
+      <workItem from="1622729101968" duration="53000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
