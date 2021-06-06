@@ -4,6 +4,7 @@ from scrapy import linkextractors
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from spider_lianjia.items import SpiderLianjiaItem
+from bs4 import BeautifulSoup
 import re
 
 
@@ -12,7 +13,7 @@ class LianjiaSpider(CrawlSpider):
     allowed_domains = ['dl.lianjia.com']
     current_page = 1
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(20, 30)]
+                  p for p in range(0, 1)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
@@ -37,16 +38,43 @@ class LianjiaSpider(CrawlSpider):
         totalPrice=response.xpath('//div[@class="totalPrice"]/span/text()').getall()
         unitPrice=response.xpath('//div[@class="unitPrice"]/span/text()').getall()
         dealCycle=response.xpath("//span[@class='dealCycleTxt']/span[2]/text()").getall()
-
+        guaPai=response.xpath("//span[@class='dealCycleTxt']/span[1]/text()").getall()#挂牌价有的有有的没有
+        # seller=response.xpath("//div[@class='agentInfoList']/a/text()").getall()
+        soup=BeautifulSoup(response.text,'lxml')
+        s=soup.select('.info ')
+        
         for i in range(0,len(dealDate)):
-            if len(temp[i].split())==3:
-                title=temp[i].split()[0]
-                room=temp[i].split()[1]
-                area=temp[i].split()[2]
+            if s[i].select('.agent_name')==[]:
+                seller='无'
             else:
-                title=temp[i].split()[0]+' '+temp[i].split()[1]
-                room=temp[i].split()[2]
-                area=temp[i].split()[3]
+                seller=s[i].select('.agent_name')[0].string
 
-            item = SpiderLianjiaItem(title=title,room=room,area=area,dealDate=dealDate[i],totalPrice=totalPrice[i],unitPrice=unitPrice[i],dealCycle=dealCycle[i])
-            yield item
+            try:
+                test=dealCycle[i]
+                if len(temp[i].split())==3:
+                    title=temp[i].split()[0]
+                    room=temp[i].split()[1]
+                    area=temp[i].split()[2]
+                else:
+                    title=temp[i].split()[0]+' '+temp[i].split()[1]
+                    room=temp[i].split()[2]
+                    area=temp[i].split()[3]
+
+                item = SpiderLianjiaItem(title=title,room=room,area=area,dealDate=dealDate[i],
+                                         totalPrice=totalPrice[i],unitPrice=unitPrice[i],dealCycle=dealCycle[i],
+                                         guaPai=0,seller=seller)
+                yield item
+            except IndexError as e:
+                if len(temp[i].split()) == 3:
+                    title = temp[i].split()[0]
+                    room = temp[i].split()[1]
+                    area = temp[i].split()[2]
+                else:
+                    title = temp[i].split()[0] + ' ' + temp[i].split()[1]
+                    room = temp[i].split()[2]
+                    area = temp[i].split()[3]
+
+                item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
+                                         totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=guaPai[i],
+                                         guaPai=0,seller=seller)
+                yield item

@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/describe_data.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/dd-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/spider_lianjia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spider_lianjia.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/describe_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/describe_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/middlewares.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider_lianjia/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +26,34 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1tPkBgYqIfjxvdBtq8xV7ByhTts" />
   <component name="ProjectLevelVcsManager">
@@ -29,8 +67,15 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Documents\python\python\爬虫\spider_lianjia\data" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
@@ -45,6 +90,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -64,6 +110,17 @@
       <option name="presentableId" value="Default" />
       <updated>1622677979714</updated>
       <workItem from="1622729101968" duration="53000" />
+      <workItem from="1622812873743" duration="4069000" />
+      <workItem from="1622859686916" duration="1847000" />
+      <workItem from="1622861821043" duration="5162000" />
+      <workItem from="1622873501807" duration="4938000" />
+      <workItem from="1622899071124" duration="7146000" />
+      <workItem from="1622941086867" duration="1504000" />
+      <workItem from="1622945742719" duration="6562000" />
+      <workItem from="1622953266974" duration="722000" />
+      <workItem from="1622954022689" duration="441000" />
+      <workItem from="1622954590378" duration="272000" />
+      <workItem from="1622960611569" duration="4747000" />
     </task>
     <servers />
   </component>
@@ -84,5 +141,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/spider_lianjia/middlewares.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/spider_lianjia$main.coverage" NAME="main 覆盖结果" MODIFIED="1622966898636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

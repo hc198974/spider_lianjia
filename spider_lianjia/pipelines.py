@@ -12,7 +12,7 @@ from spider_lianjia.items import SpiderLianjiaItem
 
 class SpiderLianjiaPipeline:
     def __init__(self):
-        self.fp=open('lianjia.json','ab')
+        self.fp=open('data/lianjia.json','wb')
         self.exporter=JsonLinesItemExporter(self.fp,encoding='utf-8',ensure_ascii=False)
 
     def process_item(self, item, spider):
