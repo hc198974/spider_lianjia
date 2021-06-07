@@ -13,7 +13,7 @@ class LianjiaSpider(CrawlSpider):
     allowed_domains = ['dl.lianjia.com']
     current_page = 1
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(0, 1)]
+                  p for p in range(10,20)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
@@ -39,7 +39,6 @@ class LianjiaSpider(CrawlSpider):
         unitPrice=response.xpath('//div[@class="unitPrice"]/span/text()').getall()
         dealCycle=response.xpath("//span[@class='dealCycleTxt']/span[2]/text()").getall()
         guaPai=response.xpath("//span[@class='dealCycleTxt']/span[1]/text()").getall()#挂牌价有的有有的没有
-        # seller=response.xpath("//div[@class='agentInfoList']/a/text()").getall()
         soup=BeautifulSoup(response.text,'lxml')
         s=soup.select('.info ')
         
@@ -62,7 +61,7 @@ class LianjiaSpider(CrawlSpider):
 
                 item = SpiderLianjiaItem(title=title,room=room,area=area,dealDate=dealDate[i],
                                          totalPrice=totalPrice[i],unitPrice=unitPrice[i],dealCycle=dealCycle[i],
-                                         guaPai=0,seller=seller)
+                                         guaPai=guaPai[i],seller=seller)
                 yield item
             except IndexError as e:
                 if len(temp[i].split()) == 3:
@@ -76,5 +75,5 @@ class LianjiaSpider(CrawlSpider):
 
                 item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
                                          totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=guaPai[i],
-                                         guaPai=0,seller=seller)
+                                         guaPai='挂牌0元',seller=seller)
                 yield item

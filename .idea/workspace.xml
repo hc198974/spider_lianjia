@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/dd-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spider_lianjia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spider_lianjia.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/describe_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/describe_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/middlewares.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" afterDir="false" />
-    </list>
+    <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,8 +101,16 @@
       <workItem from="1622953266974" duration="722000" />
       <workItem from="1622954022689" duration="441000" />
       <workItem from="1622954590378" duration="272000" />
-      <workItem from="1622960611569" duration="4747000" />
+      <workItem from="1622960611569" duration="4948000" />
     </task>
+    <task id="LOCAL-00001" summary="增加了挂牌价和销售，不容易啊，对挂牌及进行了简要分析，数据量整体上还不是很够用">
+      <created>1622967179804</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622967179804</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +130,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="增加了挂牌价和销售，不容易啊，对挂牌及进行了简要分析，数据量整体上还不是很够用" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了挂牌价和销售，不容易啊，对挂牌及进行了简要分析，数据量整体上还不是很够用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
