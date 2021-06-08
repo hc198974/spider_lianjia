@@ -13,7 +13,7 @@ class LianjiaSpider(CrawlSpider):
     allowed_domains = ['dl.lianjia.com']
     current_page = 1
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(80, 90)]
+                  p for p in range(60, 70)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
