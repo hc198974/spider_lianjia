@@ -4,7 +4,7 @@
     <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="增加爬取销售，挂牌bug修复">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" afterDir="false" />
     </list>
@@ -110,6 +110,7 @@
       <workItem from="1622960611569" duration="4948000" />
       <workItem from="1623037141397" duration="4845000" />
       <workItem from="1623110076023" duration="230000" />
+      <workItem from="1623196533860" duration="4475000" />
     </task>
     <task id="LOCAL-00001" summary="增加了挂牌价和销售，不容易啊，对挂牌及进行了简要分析，数据量整体上还不是很够用">
       <created>1622967179804</created>
