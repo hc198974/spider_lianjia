@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="增加爬取销售，挂牌bug修复">
+    <list default="true" id="b42e9f03-6473-499d-bfba-f8c36c5fca76" name="默认变更列表" comment="">
+      <change afterPath="$PROJECT_DIR$/data/zaishou.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_6_7__8_24_____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_6_8_7_40____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_6_8_7_48____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_6_7,_8_24_下午_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_6_8_7_40_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_6_8_7_48_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/spider_lianjia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spider_lianjia.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/dd-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/deal_data-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/deal_data-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/PythonSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/chengjiao.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
-    <envs>
-      <env key="FLASK_APP" value="app" />
-    </envs>
-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
-    <option name="myEnvs">
-      <map>
-        <entry key="FLASK_APP" value="app" />
-      </map>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +45,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProjectId" id="1tPkBgYqIfjxvdBtq8xV7ByhTts" />
+  <component name="ProjectId" id="1tk1vH1JVkJJNlpLOMZumoqbUai" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -54,25 +57,18 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Documents\python\python\爬虫\spider_lianjia\data" />
-    </key>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="spider_lianjia" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../test1/venv/bin/python" />
+      <option name="SDK_HOME" value="D:\ProgramData\Anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -88,45 +84,19 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="c35bd2f0-59ce-4ec5-adac-f8df98775c33" name="默认变更列表" comment="" />
-      <created>1622677979714</created>
+      <changelist id="b42e9f03-6473-499d-bfba-f8c36c5fca76" name="默认变更列表" comment="" />
+      <created>1623298506831</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1622677979714</updated>
-      <workItem from="1622729101968" duration="53000" />
-      <workItem from="1622812873743" duration="4069000" />
-      <workItem from="1622859686916" duration="1847000" />
-      <workItem from="1622861821043" duration="5162000" />
-      <workItem from="1622873501807" duration="4938000" />
-      <workItem from="1622899071124" duration="7146000" />
-      <workItem from="1622941086867" duration="1504000" />
-      <workItem from="1622945742719" duration="6562000" />
-      <workItem from="1622953266974" duration="722000" />
-      <workItem from="1622954022689" duration="441000" />
-      <workItem from="1622954590378" duration="272000" />
-      <workItem from="1622960611569" duration="4948000" />
-      <workItem from="1623037141397" duration="4845000" />
-      <workItem from="1623110076023" duration="230000" />
-      <workItem from="1623196533860" duration="4475000" />
+      <updated>1623298506831</updated>
+      <workItem from="1623298509193" duration="992000" />
+      <workItem from="1623313169998" duration="4039000" />
+      <workItem from="1623379620944" duration="6963000" />
+      <workItem from="1623399423625" duration="4173000" />
     </task>
-    <task id="LOCAL-00001" summary="增加了挂牌价和销售，不容易啊，对挂牌及进行了简要分析，数据量整体上还不是很够用">
-      <created>1622967179804</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1622967179804</updated>
-    </task>
-    <task id="LOCAL-00002" summary="增加爬取销售，挂牌bug修复">
-      <created>1623037232919</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1623037232919</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,19 +116,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="增加了挂牌价和销售，不容易啊，对挂牌及进行了简要分析，数据量整体上还不是很够用" />
-    <MESSAGE value="增加爬取销售，挂牌bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加爬取销售，挂牌bug修复" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/spider_lianjia/middlewares.py</url>
-          <line>5</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/spider_lianjia$main.coverage" NAME="main 覆盖结果" MODIFIED="1623403562751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

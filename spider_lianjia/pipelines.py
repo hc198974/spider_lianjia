@@ -8,11 +8,24 @@
 from itemadapter import ItemAdapter
 import json
 from scrapy.exporters import JsonLinesItemExporter
-from spider_lianjia.items import SpiderLianjiaItem 
+from spider_lianjia.items import SpiderLianjiaItem
+from spider_lianjia.items import SpiderZaishouItem
 
 class SpiderLianjiaPipeline:
     def __init__(self):
         self.fp=open('data/lianjia.json','ab')
+        self.exporter=JsonLinesItemExporter(self.fp,encoding='utf-8',ensure_ascii=False)
+
+    def process_item(self, item, spider):
+        self.exporter.export_item(item)
+        return item
+
+    def close_spider(self,spider):
+        self.fp.close()
+
+class SpiderZaishouPipeline:
+    def __init__(self):
+        self.fp=open('data/zaishou.json','ab')
         self.exporter=JsonLinesItemExporter(self.fp,encoding='utf-8',ensure_ascii=False)
 
     def process_item(self, item, spider):
