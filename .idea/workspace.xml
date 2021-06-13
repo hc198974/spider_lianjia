@@ -2,32 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b42e9f03-6473-499d-bfba-f8c36c5fca76" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/data/zaishou.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_6_7__8_24_____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_6_8_7_40____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_6_8_7_48____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_6_7,_8_24_下午_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_6_8_7_40_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_6_8_7_48_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/spider_lianjia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spider_lianjia.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/dd-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/deal_data-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/deal_data-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/PythonSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/deal_data-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/spider_lianjia/v16/.suo" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/zaishou.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/zaishou.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/lianjia.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/chengjiao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +45,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -68,7 +55,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\ProgramData\Anaconda3\python.exe" />
+      <option name="SDK_HOME" value="/Applications/Anaconda-Navigator.app/Contents/MacOS/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -116,8 +103,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spider_lianjia$main.coverage" NAME="main 覆盖结果" MODIFIED="1623403562751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
