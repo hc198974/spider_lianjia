@@ -4,6 +4,8 @@ import json
 from pandas import Series, DataFrame
 from bs4 import BeautifulSoup
 from spider_lianjia.items import SpiderZaishouItem
+import requests
+from lxml import etree
 
 
 def get_xiaoqu(n1, n2):
@@ -35,7 +37,7 @@ def get_content(g):
 class ZaishouSpider(CrawlSpider):
     name = 'zaishou'
     allowed_domains = ['dl.lianjia.com']
-    s = get_xiaoqu(25, 35)
+    s = get_xiaoqu(35, 45)
     current_page = 1
     start_urls = ['https://dl.lianjia.com/ershoufang/pg1rs%s' % p for p in s]
     # rules的工作关系：1、各个rule是并列关系，都是从start_urls里的开始界面，先后有一定影响，但scrapy有去重功能，提取两次也只执行一次
@@ -63,10 +65,36 @@ class ZaishouSpider(CrawlSpider):
         district = response.xpath("//span[@class='info']/a[2]/text()").get()
         seller = response.xpath("//div[@class='brokerName']/a/text()").get()
         g = soup.select('.content ul li span')
-
         guaPai = get_content(g)[0]
         previous = get_content(g)[1]
         item = SpiderZaishouItem(title=title, room=room, area=area, quyu=quyu, district=district,
                                  totalPrice=totalPrice, unitPrice=unitPrice, type=type,
                                  seller=seller, guaPai=guaPai, previous=previous)
         yield item
+
+
+class get_zaishou_one(object):
+    def get_zaishou(self,s):
+        html = requests.get('https://dl.lianjia.com/ershoufang/rs'+s)
+        r = etree.HTML(html.text)
+        list = r.xpath("//a[@class='' and @data-el='ershoufang']/@href")
+        l=[]
+        for i in list:
+            response = etree.HTML(requests.get(i).text)
+            title = response.xpath('//div[@class="communityName"]/a[1]/text()')[0]
+            totalPrice = response.xpath('//span[@class="total"]/text()')[0]
+            unitPrice = response.xpath('//span[@class="unitPriceValue"]/text()')[0]
+            room = response.xpath("//div[@class='room']/div[@class='mainInfo']/text()")[0]
+            type = response.xpath("//div[@class='mainInfo' and @title!='']/text()")[0]
+            area = response.xpath("//div[@class='area']/div[@class='mainInfo']/text()")[0]
+            quyu = response.xpath("//span[@class='info']/a[1]/text()")[0]
+            district = response.xpath("//span[@class='info']/a[2]/text()")[0]
+            seller = response.xpath("//div[@class='brokerName']/a/text()")[0]
+            builtDate=response.xpath("//div[@class='area']/div[@class='subInfo noHidden']/text()")[0]
+            soup=BeautifulSoup(requests.get(i).text,'lxml')
+            g = soup.select('.content ul li span')
+            guaPai = get_content(g)[0]
+            previous = get_content(g)[1]
+            l.append([title,totalPrice,unitPrice,room,type,area,quyu,district,seller,builtDate,guaPai,previous])
+        return l
+        
