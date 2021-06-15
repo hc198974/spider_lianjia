@@ -6,6 +6,9 @@ from scrapy.spiders import CrawlSpider, Rule
 from spider_lianjia.items import SpiderLianjiaItem
 from bs4 import BeautifulSoup
 import re
+import requests
+from lxml import etree
+from urllib.parse import quote,urlencode
 
 
 class LianjiaSpider(CrawlSpider):
@@ -85,3 +88,52 @@ class LianjiaSpider(CrawlSpider):
                                          totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=guaPai[i],
                                          guaPai='挂牌0元', seller=seller)
                 yield item
+
+class get_chengjiao_one(object):
+    def get_seller(self,s,*page):
+        base_url = 'https://dl.lianjia.com/chengjiao/display?'
+        headers = {
+            'Host': 'dl.lianjia.com',
+            'Referer': 'https://dl.lianjia.com/chengjiao/'+str(s)+'.html',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+        params = {
+            'hid':str(s)
+        }
+        url = base_url + urlencode(params)
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                js=response.json()
+                if js:
+                    seller = js.get('data').get('name')
+                    return seller
+        except requests.ConnectionError as e:
+            print('Error', e.args)
+
+    def get_chengjiao(self,s):
+        html = requests.get('https://dl.lianjia.com/chengjiao/rs'+s)
+        r = etree.HTML(html.text)
+        list = r.xpath("//div[@class='title']/a[@target='_blank' and not (@class)]/@href")
+        l=[]
+        for i in list:#seller是ajax内容
+            num=re.search('\d+',i).group()
+            seller=self.get_seller(num)
+            response = etree.HTML(requests.get(i).text)
+            title = response.xpath("//div[@class='wrapper']/text()").get().split()[0]
+            room = response.xpath("//div[@class='wrapper']/text()").get().split()[1]
+            area = response.xpath("//div[@class='wrapper']/text()").get().split()[2]
+            totalPrice = response.xpath("//span[@class='dealTotalPrice']/i/text()").get()
+            unitPrice = response.xpath("//div[@class='price']/b/text()").get()
+            type = response.xpath("//div[@class='base']/div[2]/ul/li[7]/text()").get()
+            guapaiPrice = response.xpath("//div[@class='msg']/span[1]/label/text()").get()
+            dealCycle = response.xpath("//div[@class='msg']/span[2]/label/text()").get()
+            dealDate = re.search('\d+\.\d+\.\d+', response.xpath("//div[@class='wrapper']/span/text()").get()).group()
+            builtDate = response.xpath("//div[@class='base']/div[2]/ul/li[8]/text()").get()
+            quyu = response.xpath("//div[@class='deal-bread']/a[3]/text()").get()
+            quyu = quyu[0:len(quyu) - 5]
+            district = response.xpath("//div[@class='deal-bread']/a[4]/text()").get()
+            district = district[:len(district) - 5]
+            l.append([title,totalPrice,unitPrice,room,type,area,quyu,district,seller,builtDate,guapaiPrice,dealCycle,dealDate])
+        return l
