@@ -105,35 +105,36 @@ class get_chengjiao_one(object):
         try:
             response = requests.get(url, headers=headers)
             if response.status_code == 200:
-                js=response.json()
-                if js:
-                    seller = js.get('data').get('name')
+                try:
+                    seller =response.json().get('data').get('name')
                     return seller
+                except AttributeError as e:
+                    return '无'
         except requests.ConnectionError as e:
             print('Error', e.args)
 
     def get_chengjiao(self,s):
-        html = requests.get('https://dl.lianjia.com/chengjiao/rs'+s)
+        html = requests.get('https://dl.lianjia.com/chengjiao/rs'+quote(s))
         r = etree.HTML(html.text)
         list = r.xpath("//div[@class='title']/a[@target='_blank' and not (@class)]/@href")
         l=[]
         for i in list:#seller是ajax内容
             num=re.search('\d+',i).group()
-            seller=self.get_seller(num)
+            # seller=self.get_seller(num)#seller影响速度，而且这个ajax应该是广告
             response = etree.HTML(requests.get(i).text)
-            title = response.xpath("//div[@class='wrapper']/text()").get().split()[0]
-            room = response.xpath("//div[@class='wrapper']/text()").get().split()[1]
-            area = response.xpath("//div[@class='wrapper']/text()").get().split()[2]
-            totalPrice = response.xpath("//span[@class='dealTotalPrice']/i/text()").get()
-            unitPrice = response.xpath("//div[@class='price']/b/text()").get()
-            type = response.xpath("//div[@class='base']/div[2]/ul/li[7]/text()").get()
-            guapaiPrice = response.xpath("//div[@class='msg']/span[1]/label/text()").get()
-            dealCycle = response.xpath("//div[@class='msg']/span[2]/label/text()").get()
-            dealDate = re.search('\d+\.\d+\.\d+', response.xpath("//div[@class='wrapper']/span/text()").get()).group()
-            builtDate = response.xpath("//div[@class='base']/div[2]/ul/li[8]/text()").get()
-            quyu = response.xpath("//div[@class='deal-bread']/a[3]/text()").get()
+            title = response.xpath("//div[@class='wrapper']/text()")[0].split()[0]
+            room = response.xpath("//div[@class='wrapper']/text()")[0].split()[1]
+            area = response.xpath("//div[@class='wrapper']/text()")[0].split()[2]
+            totalPrice = response.xpath("//span[@class='dealTotalPrice']/i/text()")[0]
+            unitPrice = response.xpath("//div[@class='price']/b/text()")[0]
+            type = response.xpath("//div[@class='base']/div[2]/ul/li[7]/text()")[0]
+            guapaiPrice = response.xpath("//div[@class='msg']/span[1]/label/text()")[0]
+            dealCycle = response.xpath("//div[@class='msg']/span[2]/label/text()")[0]
+            dealDate = re.search('\d+\.\d+\.\d+', response.xpath("//div[@class='wrapper']/span/text()")[0]).group()
+            builtDate = response.xpath("//div[@class='base']/div[2]/ul/li[8]/text()")[0]
+            quyu = response.xpath("//div[@class='deal-bread']/a[3]/text()")[0]
             quyu = quyu[0:len(quyu) - 5]
-            district = response.xpath("//div[@class='deal-bread']/a[4]/text()").get()
+            district = response.xpath("//div[@class='deal-bread']/a[4]/text()")[0]
             district = district[:len(district) - 5]
-            l.append([title,totalPrice,unitPrice,room,type,area,quyu,district,seller,builtDate,guapaiPrice,dealCycle,dealDate])
+            l.append([title,totalPrice,unitPrice,room,type,area,quyu,district,builtDate,guapaiPrice,dealCycle,dealDate])
         return l
