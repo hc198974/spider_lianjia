@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ddd7ebc2-90b9-4fc7-a94e-7ca31b966053" name="默认变更列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deal_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deal_data_request.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data_request.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deal_data_scrapy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data_scrapy.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/chengjiao.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/chengjiao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +26,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -68,6 +72,8 @@
       <workItem from="1623714685616" duration="4449000" />
       <workItem from="1623801051208" duration="1116000" />
       <workItem from="1623811365557" duration="1648000" />
+      <workItem from="1623895994121" duration="7805000" />
+      <workItem from="1623974763785" duration="8997000" />
     </task>
     <task id="LOCAL-00001" summary="增加单项爬取">
       <created>1623655327203</created>
@@ -102,6 +108,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="增加单项爬取" />
     <MESSAGE value="修改成交" />
     <option name="LAST_COMMIT_MESSAGE" value="修改成交" />

@@ -113,28 +113,40 @@ class get_chengjiao_one(object):
         except requests.ConnectionError as e:
             print('Error', e.args)
 
-    def get_chengjiao(self,s):
-        html = requests.get('https://dl.lianjia.com/chengjiao/rs'+quote(s))
+    def get_totalpage(self, response):
+        r = response.xpath("//div[@class='page-box house-lst-page-box']/@page-data")
+        total_page = re.search('\d+', str(r[0])).group()
+        return total_page
+
+    def get_chengjiao(self, s):
+        html = requests.get('https://dl.lianjia.com/chengjiao/rs' + s)
         r = etree.HTML(html.text)
-        list = r.xpath("//div[@class='title']/a[@target='_blank' and not (@class)]/@href")
-        l=[]
-        for i in list:#seller是ajax内容
-            num=re.search('\d+',i).group()
-            # seller=self.get_seller(num)#seller影响速度，而且这个ajax应该是广告
-            response = etree.HTML(requests.get(i).text)
-            title = response.xpath("//div[@class='wrapper']/text()")[0].split()[0]
-            room = response.xpath("//div[@class='wrapper']/text()")[0].split()[1]
-            area = response.xpath("//div[@class='wrapper']/text()")[0].split()[2]
-            totalPrice = response.xpath("//span[@class='dealTotalPrice']/i/text()")[0]
-            unitPrice = response.xpath("//div[@class='price']/b/text()")[0]
-            type = response.xpath("//div[@class='base']/div[2]/ul/li[7]/text()")[0]
-            guapaiPrice = response.xpath("//div[@class='msg']/span[1]/label/text()")[0]
-            dealCycle = response.xpath("//div[@class='msg']/span[2]/label/text()")[0]
-            dealDate = re.search('\d+\.\d+\.\d+', response.xpath("//div[@class='wrapper']/span/text()")[0]).group()
-            builtDate = response.xpath("//div[@class='base']/div[2]/ul/li[8]/text()")[0]
-            quyu = response.xpath("//div[@class='deal-bread']/a[3]/text()")[0]
-            quyu = quyu[0:len(quyu) - 5]
-            district = response.xpath("//div[@class='deal-bread']/a[4]/text()")[0]
-            district = district[:len(district) - 5]
-            l.append([title,totalPrice,unitPrice,room,type,area,quyu,district,builtDate,guapaiPrice,dealCycle,dealDate])
+        total_page = self.get_totalpage(r)
+        l = []
+        for x in range(1, (int(total_page) + 1)):
+            print(x)
+            html = requests.get('https://dl.lianjia.com/chengjiao/pg' + str(x) + 'rs' + s)
+            r = etree.HTML(html.text)
+            list = r.xpath("//div[@class='title']/a/@href")
+            for i in list:  # seller是ajax内容
+                # num = re.search('\d+', i).group()
+                # seller=self.get_seller(num)#seller影响速度，而且这个ajax应该是广告
+                response = etree.HTML(requests.get(i).text)
+                title = response.xpath("//div[@class='wrapper']/text()")[0].split()[0]
+                room = response.xpath("//div[@class='wrapper']/text()")[0].split()[1]
+                area = response.xpath("//div[@class='wrapper']/text()")[0].split()[2]
+                totalPrice = response.xpath("//span[@class='dealTotalPrice']/i/text()")[0]
+                unitPrice = response.xpath("//div[@class='price']/b/text()")[0]
+                type = response.xpath("//div[@class='base']/div[2]/ul/li[7]/text()")[0]
+                guapaiPrice = response.xpath("//div[@class='msg']/span[1]/label/text()")[0]
+                dealCycle = response.xpath("//div[@class='msg']/span[2]/label/text()")[0]
+                dealDate = re.search('\d+\.\d+\.\d+', response.xpath("//div[@class='wrapper']/span/text()")[0]).group()
+                builtDate = response.xpath("//div[@class='base']/div[2]/ul/li[8]/text()")[0]
+                quyu = response.xpath("//div[@class='deal-bread']/a[3]/text()")[0]
+                quyu = quyu[0:len(quyu) - 5]
+                district = response.xpath("//div[@class='deal-bread']/a[4]/text()")[0]
+                district = district[:len(district) - 5]
+                l.append(
+                    [title, totalPrice, unitPrice, room, type, area, quyu, district, builtDate, guapaiPrice, dealCycle,
+                     dealDate])
         return l
