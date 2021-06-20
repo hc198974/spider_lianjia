@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddd7ebc2-90b9-4fc7-a94e-7ca31b966053" name="默认变更列表" comment="">
+      <change afterPath="$PROJECT_DIR$/data/import_mongo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lianjia.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/lianjia.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lianjia.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/zaishou.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/deal_data_request.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data_request.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deal_data_scrapy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deal_data_scrapy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/describe_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/describe_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider_lianjia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/chengjiao.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/chengjiao.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider_lianjia/spiders/zaishou.py" afterDir="false" />
     </list>
@@ -74,6 +82,7 @@
       <workItem from="1623811365557" duration="1648000" />
       <workItem from="1623895994121" duration="7805000" />
       <workItem from="1623974763785" duration="8997000" />
+      <workItem from="1624160375655" duration="5543000" />
     </task>
     <task id="LOCAL-00001" summary="增加单项爬取">
       <created>1623655327203</created>
@@ -114,6 +123,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="修改成交" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spider_lianjia$main.coverage" NAME="main 覆盖结果" MODIFIED="1623647652189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spider_lianjia$main.coverage" NAME="main 覆盖结果" MODIFIED="1624165086922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

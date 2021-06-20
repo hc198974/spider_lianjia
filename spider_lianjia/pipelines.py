@@ -10,27 +10,30 @@ import json
 from scrapy.exporters import JsonLinesItemExporter
 from spider_lianjia.items import SpiderLianjiaItem
 from spider_lianjia.items import SpiderZaishouItem
+import pymongo
 
 class SpiderLianjiaPipeline:
     def __init__(self):
-        self.fp=open('data/lianjia.json','ab')
-        self.exporter=JsonLinesItemExporter(self.fp,encoding='utf-8',ensure_ascii=False)
+        self.client = pymongo.MongoClient(host='localhost',port=27017)
+        self.db=self.client['db_lianjia']
+        self.collection=self.db['chengjiao']
 
     def process_item(self, item, spider):
-        self.exporter.export_item(item)
+        self.collection.save(dict(item))
         return item
 
     def close_spider(self,spider):
-        self.fp.close()
+        self.client.close()
 
 class SpiderZaishouPipeline:
     def __init__(self):
-        self.fp=open('data/zaishou.json','ab')
-        self.exporter=JsonLinesItemExporter(self.fp,encoding='utf-8',ensure_ascii=False)
+        self.client = pymongo.MongoClient(host='localhost',port=27017)
+        self.db=self.client['db_lianjia']
+        self.collection=self.db['zaishou']
 
     def process_item(self, item, spider):
-        self.exporter.export_item(item)
+        self.collection.save(dict(item))
         return item
 
     def close_spider(self,spider):
-        self.fp.close()
+        self.client.close()

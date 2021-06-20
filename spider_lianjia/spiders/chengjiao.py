@@ -9,14 +9,32 @@ import re
 import requests
 from lxml import etree
 from urllib.parse import quote,urlencode
+import pymongo
+from pandas import DataFrame
 
+def get_xiaoqu():
+    #将pymongo数据转换成Dataframe
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["db_lianjia"]
+    mycol = mydb["chengjiao"]
+
+    x = list(mycol.find())
+    df=DataFrame(x)
+    #把没用的id删除掉
+    df=df.drop('_id',axis=1)
+    l = [x for x in df['title']]
+    s = [x for x in set(l) if x is not None]
+    s.sort()
+    return s
 
 class LianjiaSpider(CrawlSpider):
+    #获得小区列表
+    mongodata=get_xiaoqu()
     name = 'chengjiao'
     allowed_domains = ['dl.lianjia.com']
     current_page = 1
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(40, 50)]
+                  p for p in range(2, 10)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
@@ -68,11 +86,11 @@ class LianjiaSpider(CrawlSpider):
                     title = temp[i].split()[0]+' '+temp[i].split()[1]
                     room = temp[i].split()[2]
                     area = temp[i].split()[3]
-
-                item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
+                if not title in self.mongodata:
+                    item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
                                          totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=dealCycle[i],
                                          guaPai=guaPai[i], seller=seller)
-                yield item
+                    yield item
             except IndexError as e:
                 # 可能会出现有车位的情况，将会发生IndexError
                 if len(temp[i].split()) == 3:
@@ -84,10 +102,11 @@ class LianjiaSpider(CrawlSpider):
                     room = temp[i].split()[2]
                     area = temp[i].split()[3]
 
-                item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
-                                         totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=guaPai[i],
-                                         guaPai='挂牌0元', seller=seller)
-                yield item
+                if not title in self.mongodata:
+                    item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
+                                             totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=guaPai[i],
+                                             guaPai='挂牌0元', seller=seller)
+                    yield item
 
 class get_chengjiao_one(object):
     def get_seller(self,s,*page):

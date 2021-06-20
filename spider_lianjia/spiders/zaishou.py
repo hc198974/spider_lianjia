@@ -7,14 +7,18 @@ from spider_lianjia.items import SpiderZaishouItem
 import requests
 from lxml import etree
 import re
-
+import pymongo
 
 def get_xiaoqu(n1, n2):
-    list = []
-    for line in open('data/lianjia.json', 'r', encoding='utf-8'):
-        list.append(json.loads(line))
+    #将pymongo数据转换成Dataframe
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["db_lianjia"]
+    mycol = mydb["chengjiao"]
 
-    df = DataFrame(list)
+    x = list(mycol.find())
+    df=DataFrame(x)
+    #把没用的id删除掉
+    df=df.drop('_id',axis=1)  
     l = [x for x in df['title']]
     s = [x for x in set(l) if x is not None]
     s.sort()
@@ -38,7 +42,7 @@ def get_content(g):
 class ZaishouSpider(CrawlSpider):
     name = 'zaishou'
     allowed_domains = ['dl.lianjia.com']
-    s = get_xiaoqu(35, 45)
+    s = get_xiaoqu(45, 55)
     current_page = 1
     start_urls = ['https://dl.lianjia.com/ershoufang/pg1rs%s' % p for p in s]
     # rules的工作关系：1、各个rule是并列关系，都是从start_urls里的开始界面，先后有一定影响，但scrapy有去重功能，提取两次也只执行一次
