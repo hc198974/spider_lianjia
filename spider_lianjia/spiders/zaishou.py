@@ -42,7 +42,7 @@ def get_content(g):
 class ZaishouSpider(CrawlSpider):
     name = 'zaishou'
     allowed_domains = ['dl.lianjia.com']
-    s = get_xiaoqu(45, 55)
+    s = get_xiaoqu(150, 180)
     current_page = 1
     start_urls = ['https://dl.lianjia.com/ershoufang/pg1rs%s' % p for p in s]
     # rules的工作关系：1、各个rule是并列关系，都是从start_urls里的开始界面，先后有一定影响，但scrapy有去重功能，提取两次也只执行一次

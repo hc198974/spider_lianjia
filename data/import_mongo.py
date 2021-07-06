@@ -10,9 +10,8 @@ for line in open('C:\\Users\\Administrator\\Desktop\\temp\\lianjia.json', 'r', e
 
 client = pymongo.MongoClient(host='localhost',port=27017)
 db=client.db_lianjia
-collection=db.test
-for i in range(0,len(list)):
-    collection.insert_one(list[i])
+collection=db.chengjiao
+collection.insert_many(list)
 
 # def get_xiaoqu():
 #     #将pymongo数据转换成Dataframe
