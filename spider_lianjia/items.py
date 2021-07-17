@@ -18,6 +18,8 @@ class SpiderLianjiaItem(scrapy.Item):
     dealCycle=scrapy.Field()
     guaPai=scrapy.Field()
     seller=scrapy.Field()
+    quyu=scrapy.Field()
+    district=scrapy.Field()
 
 class SpiderZaishouItem(scrapy.Item):
     title = scrapy.Field()

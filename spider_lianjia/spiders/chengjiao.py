@@ -33,13 +33,40 @@ class LianjiaSpider(CrawlSpider):
     name = 'chengjiao'
     allowed_domains = ['dl.lianjia.com']
     current_page = 1
+    
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(2, 10)]
+                  p for p in range(1,4)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
         Rule(LinkExtractor(allow='/chengjiao/c\d+'), callback='parse_chengjiao')
     )
+
+    def get_weizhi(self):
+        base_url = 'https://dl.lianjia.com/api/listtop?'
+        headers = {
+            'Host': 'dl.lianjia.com',
+            'Referer': 'https://dl.lianjia.com/chengjiao/c'+self.num,
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+        params = {
+            'semParams[semResblockId]': '2911056671605',
+            'semParams[semType]': 'resblock',
+            'semParams[semSource]': 'chengjiao_xiaoqu'
+        }
+        url = base_url + urlencode(params)
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                try:
+                    quyu =response.json().get('data').get('info').get('bizcircleName')
+                    district=response.json().get('data').get('info').get('districtName')
+                    return quyu,district
+                except AttributeError as e:
+                    pass 
+        except requests.ConnectionError as e:
+            print('Error', e.args)
 
     def parse_chengjiao(self, response):
         if self.current_page == 1:
@@ -50,6 +77,7 @@ class LianjiaSpider(CrawlSpider):
             lianjie = response.xpath('//h1/a/@href').get()
 
             for i in range(1, total_page+1):
+                self.num=re.search('c\d+', lianjie).group()
                 url = 'https://dl.lianjia.com' + \
                     re.search('.+chengjiao/', lianjie).group()+'pg' + \
                     str(i)+re.search('c\d+', lianjie).group()
@@ -60,13 +88,16 @@ class LianjiaSpider(CrawlSpider):
         dealDate = response.xpath('//div[@class="dealDate"]/text()').getall()
         totalPrice = response.xpath(
             '//div[@class="totalPrice"]/span/text()').getall()
-        unitPrice = response.xpath(
-            '//div[@class="unitPrice"]/span/text()').getall()
+        unitPrice = response.xpath('//div[@class="unitPrice"]/span/text()').getall()
         dealCycle = response.xpath(
             "//span[@class='dealCycleTxt']/span[2]/text()").getall()
         guaPai = response.xpath(
             "//span[@class='dealCycleTxt']/span[1]/text()").getall()  # 挂牌价有的有有的没有
-        soup = BeautifulSoup(response.text, 'lxml')
+
+        weizhi=self.get_weizhi()#ajax
+        quyu=weizhi[0]
+        district=weizhi[1]
+        soup = BeautifulSoup(response.text, 'lxml')        
         s = soup.select('.info ')
 
         for i in range(0, len(dealDate)):
@@ -89,7 +120,7 @@ class LianjiaSpider(CrawlSpider):
                 if not title in self.mongodata:
                     item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
                                          totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=dealCycle[i],
-                                         guaPai=guaPai[i], seller=seller)
+                                         guaPai=guaPai[i], seller=seller,quyu=quyu,district=district)
                     yield item
             except IndexError as e:
                 # 可能会出现有车位的情况，将会发生IndexError
@@ -104,8 +135,8 @@ class LianjiaSpider(CrawlSpider):
 
                 if not title in self.mongodata:
                     item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
-                                             totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=guaPai[i],
-                                             guaPai='挂牌0元', seller=seller)
+                                         totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=dealCycle[i],
+                                         guaPai=guaPai[i], seller=seller,quyu=quyu,district=district)
                     yield item
 
 class get_chengjiao_one(object):

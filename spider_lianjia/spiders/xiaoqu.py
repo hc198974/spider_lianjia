@@ -19,8 +19,7 @@ class xiaoqu():
         quyu=r2.xpath(("//div[@class='fl l-txt']/a[3]/text()"))[0]
         district=r2.xpath("//div[@class='fl l-txt']/a[4]/text()")[0]
         quyu=re.sub('小区', '', quyu)
-        district=re.sub('小区','',district)
-        
+        district=re.sub('小区','',district)        
         return quyu,district
     
     def get_list(self):
@@ -40,8 +39,8 @@ class xiaoqu():
 
 
 
-x=xiaoqu()
-list=x.get_list()
-for i in list[0:10]:
-    print(x.get_weizhi(i))
+# x=xiaoqu()
+# list=x.get_list()
+# for i in list[0:10]:
+#     print(x.get_weizhi(i))
     
