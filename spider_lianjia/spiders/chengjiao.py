@@ -35,38 +35,12 @@ class LianjiaSpider(CrawlSpider):
     current_page = 1
     
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(1,4)]
+                  p for p in range(3,4)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
         Rule(LinkExtractor(allow='/chengjiao/c\d+'), callback='parse_chengjiao')
     )
-
-    def get_weizhi(self):
-        base_url = 'https://dl.lianjia.com/api/listtop?'
-        headers = {
-            'Host': 'dl.lianjia.com',
-            'Referer': 'https://dl.lianjia.com/chengjiao/c'+self.num,
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
-            'X-Requested-With': 'XMLHttpRequest',
-        }
-        params = {
-            'semParams[semResblockId]': '2911056671605',
-            'semParams[semType]': 'resblock',
-            'semParams[semSource]': 'chengjiao_xiaoqu'
-        }
-        url = base_url + urlencode(params)
-        try:
-            response = requests.get(url, headers=headers)
-            if response.status_code == 200:
-                try:
-                    quyu =response.json().get('data').get('info').get('bizcircleName')
-                    district=response.json().get('data').get('info').get('districtName')
-                    return quyu,district
-                except AttributeError as e:
-                    pass 
-        except requests.ConnectionError as e:
-            print('Error', e.args)
 
     def parse_chengjiao(self, response):
         if self.current_page == 1:
@@ -77,13 +51,14 @@ class LianjiaSpider(CrawlSpider):
             lianjie = response.xpath('//h1/a/@href').get()
 
             for i in range(1, total_page+1):
-                self.num=re.search('c\d+', lianjie).group()
                 url = 'https://dl.lianjia.com' + \
                     re.search('.+chengjiao/', lianjie).group()+'pg' + \
                     str(i)+re.search('c\d+', lianjie).group()
                 yield Request(url, callback=self.parse_lianjia)
 
     def parse_lianjia(self, response):
+        quyu = re.sub('二手房成交', '', response.xpath("//div[@class='crumbs fl']/a[3]/text()").get())#获得区域
+        district = re.sub('二手房成交', '', response.xpath("//div[@class='crumbs fl']/a[4]/text()").get())#获得位置
         temp = response.xpath('//div[@class="title"]/a/text()').getall()
         dealDate = response.xpath('//div[@class="dealDate"]/text()').getall()
         totalPrice = response.xpath(
@@ -94,9 +69,6 @@ class LianjiaSpider(CrawlSpider):
         guaPai = response.xpath(
             "//span[@class='dealCycleTxt']/span[1]/text()").getall()  # 挂牌价有的有有的没有
 
-        weizhi=self.get_weizhi()#ajax
-        quyu=weizhi[0]
-        district=weizhi[1]
         soup = BeautifulSoup(response.text, 'lxml')        
         s = soup.select('.info ')
 
