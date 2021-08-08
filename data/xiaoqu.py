@@ -38,6 +38,7 @@ class xiaoqu():
         l = [x for x in df['title']]
         s = [x for x in set(l) if x is not None]
         s.sort()
+        print(len(s))
         return s
     
     def insert_db(self, list):
@@ -49,7 +50,7 @@ class xiaoqu():
 x=xiaoqu()
 list=x.get_list()
 l=[]
-for i in list[800:900]:
+for i in list[1300:1435]:
     temp=x.get_weizhi(i)
     if not temp is None:
         print(i,temp)

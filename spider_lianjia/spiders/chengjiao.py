@@ -35,7 +35,8 @@ class LianjiaSpider(CrawlSpider):
     current_page = 1
     
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
-                  p for p in range(3,4)]
+
+                  p for p in range(1,3)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
