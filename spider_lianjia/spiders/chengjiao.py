@@ -38,7 +38,7 @@ class LianjiaSpider(CrawlSpider):
 
     start_urls = ['https://dl.lianjia.com/chengjiao/pg%s' %
 
-                  p for p in range(1, 6)]
+                  p for p in range(3, 4)]
 
     rules = (
         Rule(LinkExtractor(allow='./chengjiao/.+\.html')),  # allow里面是正则表达式
@@ -85,7 +85,6 @@ class LianjiaSpider(CrawlSpider):
                 seller = s[i].select('.agent_name')[0].string
 
             try:
-                test = dealCycle[i]
                 # 可能会出现有车位的情况，将会发生IndexError
                 if len(temp[i].split()) == 3:
                     title = temp[i].split()[0]
@@ -95,27 +94,15 @@ class LianjiaSpider(CrawlSpider):
                     title = temp[i].split()[0]+' '+temp[i].split()[1]
                     room = temp[i].split()[2]
                     area = temp[i].split()[3]
-                if not title in self.mongodata:
-                    item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
-                                             totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=dealCycle[i],
-                                             guaPai=guaPai[i], seller=seller, quyu=quyu, district=district)
-                    yield item
-            except IndexError as e:
-                # 可能会出现有车位的情况，将会发生IndexError
-                if len(temp[i].split()) == 3:
-                    title = temp[i].split()[0]
-                    room = temp[i].split()[1]
-                    area = temp[i].split()[2]
-                else:
-                    title = temp[i].split()[0] + ' ' + temp[i].split()[1]
-                    room = temp[i].split()[2]
-                    area = temp[i].split()[3]
 
                 if not title in self.mongodata:
                     item = SpiderLianjiaItem(title=title, room=room, area=area, dealDate=dealDate[i],
                                              totalPrice=totalPrice[i], unitPrice=unitPrice[i], dealCycle=dealCycle[i],
                                              guaPai=guaPai[i], seller=seller, quyu=quyu, district=district)
                     yield item
+            except IndexError as e:
+                # 可能会出现有车位的情况，将会发生IndexError，此时对车位不做处理
+                pass
 
 
 class get_chengjiao_one(object):
