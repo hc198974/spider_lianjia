@@ -30,11 +30,12 @@ def dropduplicate_db():
 def spyder_chengjiao():
     print('开始爬取')
     list = []
-    for i in range(1,3):
+    for i in range(1,4):
         print(i)
         doc = pq('https://dl.lianjia.com/chengjiao/pg'+str(i))
         p = doc('.listContent li')
         for x in p.items():
+            
             p1 = x('.title a[target="_blank"]').text()
             p7 = p1.split(" ")
             p2 = x('.totalPrice .number').text()
