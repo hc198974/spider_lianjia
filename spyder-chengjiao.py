@@ -83,7 +83,7 @@ def spyder_chengjiao():
         }
     list = []
     print('开始爬取')
-    for i in range(1, 3):
+    for i in range(1, 4):
         print(i)
         url = 'https://dl.lianjia.com/chengjiao/pg'
         req = session.get(url=url+str(i), headers=headers)
@@ -122,9 +122,7 @@ def spyder_chengjiao():
                     list.append(item)
 
     print('爬取完毕')
-    print(list)
     insert_db(list)
-
 
 spyder_chengjiao()
 print('开始查重')
