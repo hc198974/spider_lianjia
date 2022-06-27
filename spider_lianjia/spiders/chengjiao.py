@@ -1,3 +1,4 @@
+from wsgiref import headers
 import scrapy
 from scrapy import Request
 from scrapy import linkextractors
@@ -11,7 +12,53 @@ from lxml import etree
 from urllib.parse import quote, urlencode
 import pymongo
 from pandas import DataFrame
+import time
+from selenium import webdriver
 
+def denglu():
+    driver = webdriver.Chrome(
+        'C:\\Users\\Administrator\\Desktop\\spider\\chromedriver.exe')
+    time.sleep(1)
+
+    # 将打开的Chrome网页全屏
+    driver.maximize_window()
+
+    driver.get('https://dl.lianjia.com/')
+    time.sleep(1)
+    # driver.find_element_by_xpath('/html/body/div[20]/div[4]').click()  #关闭弹出框
+    # time.sleep(1)
+    driver.find_element_by_xpath(
+        '/html/body/div[1]/div/div[3]/div/div/div[1]/span/a[1]/span').click()  # 选择登录
+    time.sleep(1)
+    driver.find_element_by_xpath(
+        '//*[@id="loginModel"]/div[2]/div[2]/form/div[8]/a').click()  # 选择账号密码登录
+    time.sleep(1)
+
+    # 输入自己已经注册好的账号（最好是手机号哟）
+    driver.find_element_by_xpath(
+        '//*[@id="loginModel"]/div[2]/div[2]/form/ul/li[1]/input').send_keys('18642678245')
+    time.sleep(0.5)
+    # 输入密码
+    driver.find_element_by_xpath(
+        '//*[@id="loginModel"]/div[2]/div[2]/form/ul/li[3]/input').send_keys('hc2008011505')
+    time.sleep(0.5)
+    # 点击登录
+    driver.find_element_by_xpath(
+        '//*[@id="loginModel"]/div[2]/div[2]/form/div[7]').click()
+    time.sleep(1)
+
+    sel_cookies = driver.get_cookies()  # 获取selenium侧的cookies
+    jar = requests.cookies.RequestsCookieJar()  # 先构建RequestsCookieJar对象
+    for i in sel_cookies:
+        # 将selenium侧获取的完整cookies的每一个cookie名称和值传入RequestsCookieJar对象
+        # domain和path为可选参数，主要是当出现同名不同作用域的cookie时，为了防止后面同名的cookie将前者覆盖而添加的
+        jar.set(i['name'], i['value'], domain=i['domain'], path=i['path'])
+
+    session = requests.session()  # requests以session会话形式访问网站
+    # 将配置好的RequestsCookieJar对象加入到requests形式的session会话中
+    session.cookies.update(jar)
+    driver.close()
+    return session
 
 def get_xiaoqu():
     # 将pymongo数据转换成Dataframe
@@ -106,6 +153,9 @@ class LianjiaSpider(CrawlSpider):
 
 
 class get_chengjiao_one(object):
+    def __init__(self):
+        pass
+
     def get_seller(self, s, *page):
         base_url = 'https://dl.lianjia.com/chengjiao/display?'
         headers = {
@@ -136,20 +186,22 @@ class get_chengjiao_one(object):
         return total_page
 
     def get_chengjiao(self, s):
-        html = requests.get('https://dl.lianjia.com/chengjiao/rs' + s)
+        session = denglu()
+        html = session.get(
+            'https://dl.lianjia.com/chengjiao/rs' + s)
         r = etree.HTML(html.text)
         total_page = self.get_totalpage(r)
         l = []
         for x in range(1, (int(total_page) + 1)):
             print(x)
-            html = requests.get(
+            html = session.get(
                 'https://dl.lianjia.com/chengjiao/pg' + str(x) + 'rs' + s)
             r = etree.HTML(html.text)
             list = r.xpath("//div[@class='title']/a/@href")
             for i in list:  # seller是ajax内容
                 # num = re.search('\d+', i).group()
                 # seller=self.get_seller(num)#seller影响速度，而且这个ajax应该是广告
-                response = etree.HTML(requests.get(i).text)
+                response = etree.Hsession.get(i).text
                 title = response.xpath(
                     "//div[@class='wrapper']/text()")[0].split()[0]
                 room = response.xpath(
@@ -179,3 +231,4 @@ class get_chengjiao_one(object):
                     [title, totalPrice, unitPrice, room, type, area, quyu, district, builtDate, guapaiPrice, dealCycle,
                      dealDate])
         return l
+

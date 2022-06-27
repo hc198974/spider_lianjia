@@ -82,7 +82,7 @@ def spyder_chengjiao():
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36'
         }
     list = []
-    print('开始爬取')
+    print('开始爬取...')
     for i in range(1, 4):
         print(i)
         url = 'https://dl.lianjia.com/chengjiao/pg'
@@ -121,9 +121,6 @@ def spyder_chengjiao():
                     # 这么写是防止如果找不到指，那item就会不变，不变的话，在list里就会有两个重复的值，存入数据库就会发生错误
                     list.append(item)
 
-    print('爬取完毕')
+    print('爬取完毕...')
     insert_db(list)
 
-spyder_chengjiao()
-print('开始查重')
-dropduplicate_db()
