@@ -76,14 +76,14 @@ def dropduplicate_db():
             first = False
     print('查重完毕')
 
-def spyder_chengjiao():
+def spyder_chengjiao(m,n):
     session = denglu()
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36'
         }
     list = []
     print('开始爬取...')
-    for i in range(1, 4):
+    for i in range(m, n):
         print(i)
         url = 'https://dl.lianjia.com/chengjiao/pg'
         req = session.get(url=url+str(i), headers=headers)
@@ -107,17 +107,14 @@ def spyder_chengjiao():
             p9 = re.sub('二手房成交', '', q.split(' ')[3])
             try:
                 if len(p7) == 3:
-                    item = {'title': p7[0], 'room': p7[1], 'area': p7[2], 'totalPrice': int(
-                        p2), 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
+                    item = {'title': p7[0], 'room': p7[1], 'area': p7[2], 'totalPrice': p2, 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
                     list.append(item)
                 else:
-                    item = {'title': p7[0], 'room': p7[2], 'area': p7[3], 'totalPrice': int(
-                        p2), 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
+                    item = {'title': p7[0], 'room': p7[2], 'area': p7[3], 'totalPrice': p2, 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
                     list.append(item)
             except IndexError as e:
                 if p7[1] != '车位':
-                    item = {'title': p7[0], 'room': p7[1], 'area': '0', 'totalPrice': int(
-                        p2), 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
+                    item = {'title': p7[0], 'room': p7[1], 'area': '0', 'totalPrice': p2, 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
                     # 这么写是防止如果找不到指，那item就会不变，不变的话，在list里就会有两个重复的值，存入数据库就会发生错误
                     list.append(item)
 

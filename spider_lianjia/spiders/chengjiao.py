@@ -201,7 +201,7 @@ class get_chengjiao_one(object):
             for i in list:  # seller是ajax内容
                 # num = re.search('\d+', i).group()
                 # seller=self.get_seller(num)#seller影响速度，而且这个ajax应该是广告
-                response = etree.Hsession.get(i).text
+                response = etree.HTML(session.get(i).text)
                 title = response.xpath(
                     "//div[@class='wrapper']/text()")[0].split()[0]
                 room = response.xpath(
