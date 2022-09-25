@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
@@ -7,7 +9,7 @@ from pyquery import PyQuery as pq
 import re
 import requests
 from lxml import etree
-from urllib.parse import quote, urlencode
+from urllib.parse import urlencode
 import pymongo
 from pandas import DataFrame
 import time
@@ -33,7 +35,8 @@ def save_session(session):
 def load_session():
     session=requests.session()
     with open('data\cookies','rb') as f:
-        session = pickle.load(f)    
+        session = pickle.load(f)  
+    print(session)  
     return session
 
 def denglu():
@@ -85,7 +88,7 @@ def denglu():
         save_session(session)
         driver.close()
 
-    return session
+        return session
 
 
 def insert_db(item):
@@ -93,7 +96,6 @@ def insert_db(item):
     db = client['db_lianjia']
     collection = db['chengjiao']
     collection.insert_many(item)
-
 
 def dropduplicate_db():
     client = pymongo.MongoClient(host='localhost', port=27017)
@@ -171,7 +173,6 @@ def get_xiaoqu():
     s.sort()
     return s
 
-
 class LianjiaSpider(CrawlSpider):
     # 获得小区列表
     mongodata = get_xiaoqu()
@@ -246,7 +247,6 @@ class LianjiaSpider(CrawlSpider):
             except IndexError as e:
                 # 可能会出现有车位的情况，将会发生IndexError，此时对车位不做处理
                 pass
-
 
 class get_chengjiao_one(object):
     def __init__(self):
