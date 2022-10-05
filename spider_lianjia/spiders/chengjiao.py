@@ -1,52 +1,61 @@
 import sys
+from unicodedata import name
 sys.path.append(".")
-from scrapy import Request
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule
-from spider_lianjia.items import SpiderLianjiaItem
-from bs4 import BeautifulSoup
-from pyquery import PyQuery as pq
-import re
-import requests
-from lxml import etree
-from urllib.parse import urlencode
-import pymongo
-from pandas import DataFrame
-import time
-from selenium import webdriver
-import os
 import pickle
+import os
+from selenium import webdriver
+import time
+from pandas import DataFrame
+import pymongo
+from urllib.parse import urlencode
+from lxml import etree
+import requests
+import re
+from pyquery import PyQuery as pq
+from bs4 import BeautifulSoup
+from spider_lianjia.items import SpiderLianjiaItem
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+from scrapy import Request
 
-#链家cookie的有效时间是1800秒,设置1700秒，有个余量
+
+
+# 链家cookie的有效时间是1800秒,设置1700秒，有个余量
 def check_cookie():
-    bl=True
-    now=time.time()
-    changetime=os.stat(r"C:\Users\Administrator\Desktop\spider\spider_lianjia\data\cookies").st_atime
-    if (now-changetime)<1700:
-        bl=True
+    bl = True
+    now = time.time()
+    changetime = os.stat(
+        r"C:\Users\Administrator\Desktop\spider\spider_lianjia\data\cookies").st_mtime
+
+    if (now-changetime) < 1700:
+        bl = True
     else:
-        bl=False
+        bl = False
     return bl
 
-def save_session(session):    
-    with open('data\cookies', 'wb') as f:
-        pickle.dump(session, f)
 
-def load_session():
-    session=requests.session()
-    with open('data\cookies','rb') as f:
-        session = pickle.load(f)  
-    print(session)  
-    return session
+def save_jar(jar):
+    with open('data\cookies', 'wb') as f:
+        pickle.dump(jar, f)
+
+
+def load_jar():
+    with open('data\cookies', 'rb') as f:
+        jar = pickle.load(f)
+    return jar
 
 def denglu():
-    bl=check_cookie()
-    if bl==True:        
-        session = load_session()        
+    bl = check_cookie()
+    if bl == True:
+        jar = requests.cookies.RequestsCookieJar()  # 先构建RequestsCookieJar对象        
+        session=requests.session()  #构建session对象
+
+        jar=load_jar()
+        session.cookies.update(jar)
+        return session
     else:
-        driver = webdriver.Chrome(
-            'C:\\Users\\Administrator\\Desktop\\spider\\chromedriver.exe')
         time.sleep(1)
+        driver = webdriver.Chrome('C:\\Users\\Administrator\\Desktop\\spider\\chromedriver.exe')
 
         # 将打开的Chrome网页全屏
         driver.maximize_window()
@@ -85,7 +94,7 @@ def denglu():
         session = requests.session()  # requests以session会话形式访问网站
         # 将配置好的RequestsCookieJar对象加入到requests形式的session会话中
         session.cookies.update(jar)
-        save_session(session)
+        save_jar(jar)
         driver.close()
 
         return session
@@ -96,6 +105,7 @@ def insert_db(item):
     db = client['db_lianjia']
     collection = db['chengjiao']
     collection.insert_many(item)
+
 
 def dropduplicate_db():
     client = pymongo.MongoClient(host='localhost', port=27017)
@@ -113,11 +123,12 @@ def dropduplicate_db():
             first = False
     print('查重完毕')
 
-def spyder_chengjiao(m,n):
+
+def spyder_chengjiao(m, n):
     session = denglu()
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36'
-        }
+    }
     list = []
     print('开始爬取...')
     for i in range(m, n):
@@ -144,19 +155,23 @@ def spyder_chengjiao(m,n):
             p9 = re.sub('二手房成交', '', q.split(' ')[3])
             try:
                 if len(p7) == 3:
-                    item = {'title': p7[0], 'room': p7[1], 'area': p7[2], 'totalPrice': p2, 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
+                    item = {'title': p7[0], 'room': p7[1], 'area': p7[2], 'totalPrice': p2, 'unitPrice': p3,
+                            'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
                     list.append(item)
                 else:
-                    item = {'title': p7[0], 'room': p7[2], 'area': p7[3], 'totalPrice': p2, 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
+                    item = {'title': p7[0], 'room': p7[2], 'area': p7[3], 'totalPrice': p2, 'unitPrice': p3,
+                            'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
                     list.append(item)
             except IndexError as e:
                 if p7[1] != '车位':
-                    item = {'title': p7[0], 'room': p7[1], 'area': '0', 'totalPrice': p2, 'unitPrice': p3, 'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
+                    item = {'title': p7[0], 'room': p7[1], 'area': '0', 'totalPrice': p2, 'unitPrice': p3,
+                            'dealDate': p4, 'guaPai': p5, 'dealCycle': p6, 'seller': '0', 'district': p9, 'quyu': p8}
                     # 这么写是防止如果找不到指，那item就会不变，不变的话，在list里就会有两个重复的值，存入数据库就会发生错误
                     list.append(item)
 
     print('爬取完毕...')
     insert_db(list)
+
 
 def get_xiaoqu():
     # 将pymongo数据转换成Dataframe
@@ -172,6 +187,7 @@ def get_xiaoqu():
     s = [x for x in set(l) if x is not None]
     s.sort()
     return s
+
 
 class LianjiaSpider(CrawlSpider):
     # 获得小区列表
@@ -247,6 +263,7 @@ class LianjiaSpider(CrawlSpider):
             except IndexError as e:
                 # 可能会出现有车位的情况，将会发生IndexError，此时对车位不做处理
                 pass
+
 
 class get_chengjiao_one(object):
     def __init__(self):
@@ -327,4 +344,3 @@ class get_chengjiao_one(object):
                     [title, totalPrice, unitPrice, room, type, area, quyu, district, builtDate, guapaiPrice, dealCycle,
                      dealDate])
         return l
-
