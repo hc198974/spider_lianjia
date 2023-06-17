@@ -1,4 +1,8 @@
 {
     "python.pythonPath": "D:\\ProgramData\\Anaconda3\\python.exe",
-    "jupyter.jupyterServerType": "local"
+    "jupyter.jupyterServerType": "local",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }
