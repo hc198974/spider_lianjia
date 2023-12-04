@@ -58,7 +58,7 @@ def denglu():
     else:
         time.sleep(1)
         driver = webdriver.Chrome(
-            "C:\\Users\\Administrator\\Documents\\GitHub\\spider_lianjia\\chromedriver.exe"
+            "C:\\Users\\Administrator\\Documents\\GitHub\\spider_lianjia\\chromedriver98.exe"
         )
 
         # 将打开的Chrome网页全屏
@@ -73,25 +73,29 @@ def denglu():
         ).click()  # 选择登录
         time.sleep(1)
         driver.find_element_by_xpath(
-            '//*[@id="loginModel"]/div[2]/div[2]/form/div[8]/a'
+            # '//div[@id="loginModel"]/div[2]/div[2]/form/div[8]/a'
+            "//a[@class='change_login_type _color']"
         ).click()  # 选择账号密码登录
         time.sleep(1)
 
         # 输入自己已经注册好的账号（最好是手机号哟）
         driver.find_element_by_xpath(
-            '//*[@id="loginModel"]/div[2]/div[2]/form/ul/li[1]/input'
+            # '//*[@id="loginModel"]/div[2]/div[2]/form/ul/li[1]/input'
+            "//input[@class='phonenum_input']"
         ).send_keys("18642678245")
         time.sleep(0.5)
         # 输入密码
         driver.find_element_by_xpath(
-            '//*[@id="loginModel"]/div[2]/div[2]/form/ul/li[3]/input'
+            # '//*[@id="loginModel"]/div[2]/div[2]/form/ul/li[3]/input'
+            "//input[@class='password_type password_input']"
         ).send_keys("hc2008011505")
         time.sleep(0.5)
         # 点击登录
         driver.find_element_by_xpath(
-            '//*[@id="loginModel"]/div[2]/div[2]/form/div[7]'
+            # '//*[@id="loginModel"]/div[2]/div[2]/form/div[7]'
+            "//div[@class='btn confirm_btn login_panel_op login_submit _bgcolor']"
         ).click()
-        time.sleep(1)
+        time.sleep(60)
 
         sel_cookies = driver.get_cookies()  # 获取selenium侧的cookies
         jar = requests.cookies.RequestsCookieJar()  # 先构建RequestsCookieJar对象
