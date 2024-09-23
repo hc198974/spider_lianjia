@@ -18,6 +18,7 @@ from spider_lianjia.items import SpiderLianjiaItem
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy import Request
+from fake_useragent import UserAgent
 
 
 # 链家cookie的有效时间是1800秒,设置1700秒，有个余量
@@ -65,7 +66,7 @@ def denglu():
         driver.maximize_window()
 
         driver.get("https://dl.lianjia.com/")
-        time.sleep(1)
+        time.sleep(15)
         # driver.find_element_by_xpath('/html/body/div[20]/div[4]').click()  #关闭弹出框
         # time.sleep(1)
         driver.find_element_by_xpath(
@@ -92,7 +93,7 @@ def denglu():
             # '//*[@id="loginModel"]/div[2]/div[2]/form/div[7]'
             "//form[@class='form form_1']/div[@class='btn confirm_btn login_panel_op login_submit _bgcolor']"
         ).click()
-        time.sleep(60)
+        time.sleep(120)
 
         sel_cookies = driver.get_cookies()  # 获取selenium侧的cookies
         jar = requests.cookies.RequestsCookieJar()  # 先构建RequestsCookieJar对象
@@ -153,9 +154,7 @@ def dropduplicate_db():
 
 def spyder_chengjiao(m, n):
     session = denglu()
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36"
-    }
+    headers = {'User-Agent': UserAgent().random}
     list = []
     print("开始爬取...")
     for i in range(m, n):
@@ -163,8 +162,11 @@ def spyder_chengjiao(m, n):
         url = "https://dl.lianjia.com/chengjiao/pg"
         req = session.get(url=url + str(i), headers=headers)
         doc = pq(req.text)
+        print(doc)
         p = doc(".listContent li")
+        
         for x in p.items():
+            time.sleep(4)
             p1 = x('.title a[target="_blank"]').text()
             p7 = p1.split(" ")
             p2 = x(".totalPrice .number").text()
